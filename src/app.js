@@ -1,6 +1,11 @@
 const express = require('express');
 
 const app = express();
+const teste = () => {
+  console.log('teste');
+};
+
+teste();
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
