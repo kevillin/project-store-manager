@@ -1,15 +1,29 @@
 const express = require('express');
+// const camelize = require('camelize');
+const products = require('./models/db/products.model');
+// const connection = require('./models/db/connection');
 
 const app = express();
-const teste = () => {
-  console.log('teste');
-};
-
-teste();
+app.use(express.json());
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
+});
+
+app.get('/products', async (_req, res) => {
+  const result = await products.getAll();
+  
+  res.status(200).json(result);
+});
+
+app.get('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await products.getById(id);
+
+  if (!result) return res.status(404).json({ message: 'Product not found' });
+  
+  return res.status(200).json(result);
 });
 
 // não remova essa exportação, é para o avaliador funcionar
