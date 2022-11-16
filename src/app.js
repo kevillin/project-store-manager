@@ -26,6 +26,13 @@ app.get('/products/:id', async (req, res) => {
   return res.status(200).json(result);
 });
 
+app.post('/products', async (req, res) => {
+  const name = req.body;
+  const response = await products.newProduct(name);
+
+  return res.status(201).json(response);
+});
+
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
 // você deve usar o arquivo index.js para executar sua aplicação 
