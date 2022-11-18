@@ -18,8 +18,19 @@ const newProduct = async (name) => {
   return { type: null, message: result };
 };
 
+const deleteProduct = async (id) => {
+  const exist = await products.getById(id);
+
+  if (!exist) return { type: 404, message: 'Product not found' };
+
+  await products.deleteProduct(id);
+
+  return { type: null };
+};
+
 module.exports = {
   getAll,
   getById,
   newProduct,
+  deleteProduct,
 };
