@@ -13,7 +13,6 @@ const getById = async (req, res) => {
   const { type, message } = await salesService.getById(Number(id));
 
   if (type) return res.status(type).json({ message });
-  // if (!message) return res.status(404).json({ message: 'Sale not found' });
   
   return res.status(200).json(message);
 };

@@ -15,11 +15,11 @@ const validateSales = (req, res, next) => {
   const productId = req.body;
 
   const hasProductId = productId.every((product) => product.productId);
-  const hasQuatity = productId.every((product) => product.quantity !== null
+  const hasQuantity = productId.every((product) => product.quantity !== null
     && product.quantity !== undefined);
   const isMoreThanZero = productId.every((product) => product.quantity > 0);
   if (!hasProductId) return res.status(400).json({ message: '"productId" is required' });
-  if (!hasQuatity) return res.status(400).json({ message: '"quantity" is required' });
+  if (!hasQuantity) return res.status(400).json({ message: '"quantity" is required' });
   if (!isMoreThanZero) {
     return res.status(422).json({ message: '"quantity" must be greater than or equal to 1' });
   }
@@ -37,6 +37,7 @@ const validateProductId = async (req, res, next) => {
 
   return next();
 };
+
 module.exports = {
   validateNameProduct,
   validateSales,

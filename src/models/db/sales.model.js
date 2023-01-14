@@ -18,7 +18,6 @@ const getById = async (id) => {
       WHERE sales.id = ?`, [id],
   );
 
-  console.log(result);
   return camelize(result);
 };
 
